@@ -1,0 +1,470 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FunBox — Random Fun Generator</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top left, #6c63ff55, transparent 35%),
+        radial-gradient(circle at bottom right, #00d4ff44, transparent 35%),
+        #080b16;
+    color: #fff;
+    padding: 30px 15px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1050px;
+    margin: auto;
+}
+
+/* HEADER */
+
+header {
+    text-align: center;
+    padding: 35px 10px;
+}
+
+.logo {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid #ffffff22;
+    border-radius: 50px;
+    background: #ffffff0d;
+    color: #a9a3ff;
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+h1 {
+    font-size: clamp(38px, 7vw, 70px);
+    line-height: 1;
+    letter-spacing: -3px;
+    margin-bottom: 18px;
+}
+
+.gradient {
+    background: linear-gradient(90deg, #8b7cff, #4ddcff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: #a8aec0;
+    max-width: 600px;
+    margin: auto;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* MAIN CARD */
+
+.main-card {
+    background: #ffffff08;
+    border: 1px solid #ffffff12;
+    border-radius: 28px;
+    padding: 30px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 30px 80px #00000055;
+}
+
+.input-section {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.input-section label {
+    display: block;
+    color: #a8aec0;
+    margin-bottom: 10px;
+}
+
+input {
+    width: 100%;
+    max-width: 500px;
+    padding: 16px 20px;
+    border-radius: 14px;
+    border: 1px solid #ffffff18;
+    outline: none;
+    background: #00000035;
+    color: white;
+    font-size: 16px;
+}
+
+input::placeholder {
+    color: #707789;
+}
+
+input:focus {
+    border-color: #8177ff;
+    box-shadow: 0 0 0 4px #8177ff22;
+}
+
+/* BUTTONS */
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+    border-radius: 16px;
+    padding: 18px;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    transition: .2s ease;
+}
+
+button:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+}
+
+button:active {
+    transform: scale(.97);
+}
+
+.btn-excuse {
+    background: linear-gradient(135deg, #ff9f43, #ff6b6b);
+}
+
+.btn-future {
+    background: linear-gradient(135deg, #8e7dff, #b45cff);
+}
+
+.btn-fact {
+    background: linear-gradient(135deg, #00c9a7, #00a8ff);
+}
+
+.btn-roast {
+    background: linear-gradient(135deg, #ff5f6d, #ff8a5b);
+}
+
+.btn-surprise {
+    grid-column: 1 / -1;
+    background: linear-gradient(135deg, #667eea, #4ddcff);
+    font-size: 18px;
+}
+
+/* RESULT */
+
+.result-box {
+    margin-top: 28px;
+    min-height: 230px;
+    border-radius: 22px;
+    background: #00000025;
+    border: 1px solid #ffffff12;
+    padding: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.result-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.result-text {
+    font-size: 22px;
+    line-height: 1.5;
+    color: #f5f7ff;
+    max-width: 700px;
+}
+
+.actions {
+    margin-top: 18px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.small-btn {
+    padding: 10px 16px;
+    background: #ffffff12;
+    border: 1px solid #ffffff12;
+    font-size: 13px;
+}
+
+/* HISTORY */
+
+.history {
+    margin-top: 28px;
+}
+
+.history h2 {
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.history-item {
+    padding: 12px 15px;
+    border-radius: 12px;
+    background: #ffffff08;
+    color: #aeb5c8;
+    font-size: 14px;
+}
+
+/* FOOTER */
+
+footer {
+    text-align: center;
+    color: #62697c;
+    padding: 30px;
+    font-size: 13px;
+}
+
+/* ANIMATION */
+
+.pop {
+    animation: pop .35s ease;
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(.96);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* MOBILE */
+
+@media(max-width: 650px) {
+
+    body {
+        padding: 15px;
+    }
+
+    .main-card {
+        padding: 20px;
+    }
+
+    .buttons {
+        grid-template-columns: 1fr;
+    }
+
+    .btn-surprise {
+        grid-column: auto;
+    }
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    .result-box {
+        padding: 25px 15px;
+    }
+
+    .result-text {
+        font-size: 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+
+    <div class="logo">✨ FUNBOX</div>
+
+    <h1>
+        Welcome to <span class="gradient">FunBox</span>
+    </h1>
+
+    <p class="subtitle">
+        A collection of random, positive and entertaining generators.
+        Enter a name, choose a category and discover something new.
+    </p>
+
+</header>
+
+
+<div class="main-card">
+
+    <div class="input-section">
+
+        <label for="name">
+            Your name
+        </label>
+
+        <input
+            id="name"
+            type="text"
+            maxlength="30"
+            placeholder="Enter your name..."
+        >
+
+    </div>
+
+
+    <div class="buttons">
+
+        <button
+            class="btn-excuse"
+            onclick="generate('excuse')">
+            📝 Creative Excuse
+        </button>
+
+        <button
+            class="btn-future"
+            onclick="generate('future')">
+            🔮 Future Prediction
+        </button>
+
+        <button
+            class="btn-fact"
+            onclick="generate('fact')">
+            🧠 Interesting Fact
+        </button>
+
+        <button
+            class="btn-roast"
+            onclick="generate('roast')">
+            😄 Friendly Roast
+        </button>
+
+        <button
+            class="btn-surprise"
+            onclick="surprise()">
+            ✨ Surprise Me
+        </button>
+
+    </div>
+
+
+    <div class="result-box" id="result">
+
+        <div>
+
+            <div class="result-icon">
+                🎲
+            </div>
+
+            <div class="result-text">
+                Choose a category to get started.
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="actions">
+
+        <button
+            class="small-btn"
+            onclick="copyResult()">
+            📋 Copy
+        </button>
+
+        <button
+            class="small-btn"
+            onclick="clearResult()">
+            Clear
+        </button>
+
+    </div>
+
+
+    <div class="history">
+
+        <h2>Recent results</h2>
+
+        <div
+            class="history-list"
+            id="history">
+        </div>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © 2026 FunBox • Made for entertainment
+</footer>
+
+</div>
+
+
+<script>
+
+/* =========================
+   RESPONSE DATABASE
+========================= */
+
+const data = {
+
+excuse: [
+
+"Sorry, I was ready to start, but my brain needed one more minute.",
+"I planned everything perfectly until my schedule decided otherwise.",
+"I was about to finish it when I realized I had forgotten the first step.",
+"I got distracted by something extremely important... although I can't remember what it was.",
+"My reminder reminded me, but unfortunately I ignored the reminder.",
+"I started early, but somehow the clock moved faster than expected.",
+"I had a plan. The plan had a different plan.",
+"I was prepared, but my preparation was apparently on another device.",
+"I opened the task with confidence and immediately needed a snack.",
+"I was ready to begin, then my brain requested a short maintenance break.",
+"I thought I had more time. Future me clearly disagreed.",
+"I organized everything so well that I temporarily forgot where I put it.",
+"I intended to do it immediately. Immediately became slightly later.",
+"I wasn't late. I was operating on a different schedule.",
+"I had everything under control until the details arrived.",
+"I started with great motivation. It quietly disappeared afterwards.",
+"I was going to finish it, but I accidentally entered thinking mode.",
+"I checked the clock once and somehow lost an entire hour.",
+"I had a very productive plan. Execution is still loading.",
+"I was almost done, which is a very optimistic way of saying I had started."
+
+],
+
+future: [
+
+"you will discover a surprisingly useful talent when you least expect it.",
+"you will become known for something completely unexpected.",
+"you will have a day where everything goes suspiciously well.",
+"you will learn a skill that makes your future self very grateful.",
+"you will make a decision that leads to an interesting new opportunity.",
+"you will eventually find something you once thought you had lost.",
+"you will have an unexpectedly memorable adventure.",
+"you will become very good at something you currently find difficult.",
+"you will meet someone who teaches you an interesting new perspective.",
+"you will create something that makes you genuinely proud.",
+"your future contains at least one extremely good surprise.",
+"you will look back at today's small decisi
+```
